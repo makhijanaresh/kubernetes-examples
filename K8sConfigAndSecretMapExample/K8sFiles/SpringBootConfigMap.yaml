@@ -1,0 +1,7 @@
+apiVersion : v1
+kind : ConfigMap
+metadata:
+  name : sb-config
+data:
+  configFirstKey : Hello World
+  configSecondKey: God is great
