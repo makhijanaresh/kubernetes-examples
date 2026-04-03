@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-configmap-secret-deployment
+spec:
+  selector:
+    matchLabels:
+      app: springboot-k8s
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: springboot-k8s
+    spec:
+      containers:
+        - name: springboot-k8s-configmap
+          image: nareshm15/springboot-k8s-configmap:1.1
+          ports:
+            - containerPort: 8080
+          env:  
+            - name: configFirstProperty   
+              valueFrom :
+                configMapKeyRef :
+                  name : sb-config
+                  key :  configFirstKey
+
+            - name: configSecondProperty  
+              valueFrom :
+                configMapKeyRef :
+                  name : sb-config
+                  key :  configSecondKey
+
+            - name: secretFirstKey 
+              valueFrom :
+                secretKeyRef :
+                  name : springboot-secrets
+                  key :  firstSecret
+
+            - name: secretSecondKey 
+              valueFrom :
+                secretKeyRef :
+                  name : springboot-secrets
+                  key :  secondSecret
