@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-b
+  labels:
+    app: pod-b
+spec:
+  containers:
+    - name: pod-b
+      image: pod-b
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 8080
